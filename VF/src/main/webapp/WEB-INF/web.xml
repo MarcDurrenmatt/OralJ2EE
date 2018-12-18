@@ -14,11 +14,11 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>discountEditor</welcome-file>
+        <welcome-file>LogController</welcome-file>
     </welcome-file-list>
     <servlet>
-        <servlet-name>DiscountEditorController</servlet-name>
-        <servlet-class>servlet.DiscountEditorController</servlet-class>
+        <servlet-name>LogController</servlet-name>
+        <servlet-class>servlet.LogController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminControl</servlet-name>

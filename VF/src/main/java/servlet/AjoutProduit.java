@@ -23,7 +23,8 @@ public class AjoutProduit extends HttpServlet {
         DAO dao = new DAO(DataSourceFactory.getDataSource());
         Properties resultat = new Properties();
         
-	int Product_ID = Integer.parseInt(request.getParameter("Product_ID"));
+
+        int Product_ID = Integer.parseInt(request.getParameter("Product_ID"));
         int id = Integer.parseInt(request.getParameter("id"));
         dao.insertOrder(dao.maxOrderNum()+1, id, Product_ID, 1, (float) dao.ProductPrice(Product_ID), "2018-11-29","2018-12-01",dao.ManbyProduct(Product_ID));
         showView("Ajout_ok.jsp",request, response);

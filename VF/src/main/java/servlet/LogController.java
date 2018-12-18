@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -17,10 +16,9 @@ import model.DataSourceFactory;
 
 /**
  * Le contrôleur de l'application
- * @author rbastide
  */
-@WebServlet(name = "discountEditor", urlPatterns = {"/discountEditor"})
-public class DiscountEditorController extends HttpServlet {
+@WebServlet(name = "LogController", urlPatterns = {"/LogController"})
+public class LogController extends HttpServlet {
 
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -48,14 +46,14 @@ public class DiscountEditorController extends HttpServlet {
                     break;
             }
         } else {
-            showView("ajoutDiscount.jsp", request, response);
+            showView("Accueil.jsp", request, response);
         }
 
     }
         private void exitSession(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.invalidate();
-        showView("ajoutDiscount.jsp", request, response);
+        showView("Accueil.jsp", request, response);
     }
 
     private void startSession(HttpServletRequest request, HttpServletResponse response, String action) throws ServletException, IOException {
@@ -108,6 +106,7 @@ public class DiscountEditorController extends HttpServlet {
                 }
             } else {
                 request.setAttribute("correct", false);
+                showView("Accueil.jsp", request, response);
             }
         }
     }
