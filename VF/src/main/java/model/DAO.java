@@ -161,7 +161,82 @@ public class DAO {
         }
         return result;
     }
+        public String ManbyProduct(int product) throws SQLException {
+        String result = null;
+
+        String sql = "SELECT NAME AS NOM \n"
+                + "    FROM MANUFACTURER \n"
+                + "        INNER JOIN PRODUCT \n"
+                + "            ON PRODUCT.MANUFACTURER_ID=MANUFACTURER.MANUFACTURER_ID and PRODUCT.PRODUCT_ID=?";
+        try (Connection myConnection = myDataSource.getConnection();
+                PreparedStatement statement = myConnection.prepareStatement(sql)) {
+            statement.setInt(1, product); // On fixe le 1° paramètre de la requête
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    // est-ce qu'il y a un résultat ? (pas besoin de "while", 
+                    // il y a au plus un enregistrement)
+                    // On récupère les champs de l'enregistrement courant
+                    result = rs.getString("NOM");
+                }
+            }
+        }
+        return result;
+    }
+
+    public int ProductPrice(int product) throws SQLException {
+        int result = 0;
+
+        String sql = "SELECT PURCHASE_COST AS COST FROM PRODUCT WHERE PRODUCT_ID = ?";
+        try (Connection myConnection = myDataSource.getConnection();
+                PreparedStatement statement = myConnection.prepareStatement(sql)) {
+            statement.setInt(1, product); // On fixe le 1° paramètre de la requête
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    // est-ce qu'il y a un résultat ? (pas besoin de "while", 
+                    // il y a au plus un enregistrement)
+                    // On récupère les champs de l'enregistrement courant
+                    result = rs.getInt("COST");
+                }
+            }
+        }
+        return result;
+    }
+
+    public int maxOrderNum() throws SQLException {
+        int result = 0;
+
+        String sql = "SELECT MAX(ORDER_NUM) AS MAXI FROM PURCHASE_ORDER";
+        try (Connection connection = myDataSource.getConnection();
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) { // Tant qu'il y a des enregistrements
+                result = rs.getInt("MAXI");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger("DAO").log(Level.SEVERE, null, ex);
+            throw new SQLException(ex.getMessage());
+        }
+        return result;
+    }
 
 
+    public void insertOrder(int ordernum, int c_id, int p_id, int quantity, float shipping, String sale_d, String shipping_d, String Company) throws SQLException {
+        // Une requête SQL paramétrée
+        String sql = "INSERT INTO PURCHASE_ORDER VALUES(?, ?, ?,?,?,?,?,?)";
+        try (Connection connection = myDataSource.getConnection();
+                PreparedStatement stmt = connection.prepareStatement(sql)) {
+            // Définir la valeur du paramètre
+            stmt.setInt(1, ordernum);
+            stmt.setInt(2, c_id);
+            stmt.setInt(3, p_id);
+            stmt.setInt(4, quantity);
+            stmt.setFloat(5, shipping);
+            stmt.setString(6, sale_d);
+            stmt.setString(7, shipping_d);
+            stmt.setString(8, Company);
 
+            stmt.executeUpdate();
+        }
+    }
 }

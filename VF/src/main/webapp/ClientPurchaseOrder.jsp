@@ -5,7 +5,7 @@
     <head>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Projet J2E - PMD</title>
+        <title>Projet</title>
         
         <script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
@@ -128,7 +128,7 @@
         <h1>Voici vos commandes, ${sessionScope.name}</h1>
            
         <div id="affPO"></div>
-        <a href='#' onclick='showCodesP()'>Passer une nouvelle commande</a>
+        <a href='ajoutProduit.jsp' onclick='showCodesP()'>Passer une nouvelle commande</a>
         <div id="affP"></div>
         
 

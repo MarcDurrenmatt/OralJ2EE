@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app metadata-complete="false" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>ServletContextListener</servlet-name>
-        <servlet-class>servlet.ServletContextListener</servlet-class>
+        <servlet-name>ServletApplicationListener</servlet-name>
+        <servlet-class>servlet.ServletApplicationListener</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletContextListener</servlet-name>
-        <url-pattern>/ServletContextListener</url-pattern>
+        <servlet-name>ServletApplicationListener</servlet-name>
+        <url-pattern>/ServletApplicationListener</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -27,5 +27,9 @@
     <servlet>
         <servlet-name>vueClient</servlet-name>
         <servlet-class>servlet.vueClient</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>AjoutProduit</servlet-name>
+        <servlet-class>servlet.AjoutProduit</servlet-class>
     </servlet>
 </web-app>
